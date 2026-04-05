@@ -1,0 +1,14 @@
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\bin\Debug\net10.0\CyberSecurityChatBot.exe
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\bin\Debug\net10.0\CyberSecurityChatBot.deps.json
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\bin\Debug\net10.0\CyberSecurityChatBot.runtimeconfig.json
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\bin\Debug\net10.0\CyberSecurityChatBot.dll
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\bin\Debug\net10.0\CyberSecurityChatBot.pdb
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\CyberSecurityChatBot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\CyberSecurityChatBot.AssemblyInfoInputs.cache
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\CyberSecurityChatBot.AssemblyInfo.cs
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\CyberSecurityChatBot.csproj.CoreCompileInputs.cache
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\CyberSecurityChatBot.dll
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\refint\CyberSecurityChatBot.dll
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\CyberSecurityChatBot.pdb
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\CyberSecurityChatBot.genruntimeconfig.cache
+C:\Users\Chantel\Downloads\Year 2 C#\CyberSecurityChatBot\obj\Debug\net10.0\ref\CyberSecurityChatBot.dll
