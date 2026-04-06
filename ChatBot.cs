@@ -8,7 +8,7 @@ public class ChatBot
     {
 
         public string botName = "CyberBot";
-        public string userName;
+        public string userName = "";
 
         public void Start()
         {
@@ -22,9 +22,9 @@ public class ChatBot
                 userName = "Friend";
             }
 
-            Console.WriteLine("Hello" + userName + "! Nice to meet you.");
-            Console.WriteLine("I am " + botName + ", your Cybersecurity Assistant who is here to give you practical tips so that you can protect your self online.\n");
-
+            Console.WriteLine("Hello " + userName + "! Nice to meet you.");
+            Console.WriteLine("I am " + botName + ", your Cybersecurity Assistant who is here to give you practical tips so that you can protect your self online.");
+            Console.WriteLine("Just type yo question naturally.\n");
             RunChat();
         }
 
@@ -49,13 +49,13 @@ public class ChatBot
             while (true)
             {
                 //this shows the conversation between the bot and user
-                Console.WriteLine(userName + ": ");
+                Console.Write(userName + ": "); //keeps the USER: and the question the user types on the same line
                 string input = Console.ReadLine()!;
 
                 //allows the user to end the chat
-                if (input.ToLower() == "exit")
+                if (input.ToLower() == "exit" || input.ToLower()== "quit")
                 {
-                    Console.WriteLine("Goodbye " + userName + "! Stay safe online." );
+                    Console.WriteLine("Goodbye and thank you for chatting, " + userName + ". Stay safe online!" );
                     break;
                 }
                 //the bot response name is CyberBot so where it respond to the user its shown
@@ -70,7 +70,7 @@ public class ChatBot
             input = input.ToLower().Trim();
 
             //chat responses
-            if (input == "hello" || input.Contains("hi"))
+            if (input == "hello" || input == "hi")
             {
                 return "Hello " + userName +  "! How can l help you with today?";
             }
@@ -89,11 +89,11 @@ public class ChatBot
             //cybersecurity topics
             else if (input.Contains("password"))
             {
-                return "Use string password with symbols and numbers.A password should have at least 16 characters long, for example (OkayNow2026!Coffe)";
+                return "Use strong password with symbols and numbers.A password should have at least 16 characters long, for example (OkayNow2026!Coffe)";
             }
-            else if (input.Contains("phishing") )
+            else if (input.Contains("phishing"))
             {
-                return "Phishing is currently the biggest Cyber threat in SA where scammers send emails or or SMS pretending to be genuine. To avoid this do no click on suspcious links" + userName + ".";
+                return "Phishing is currently the biggest Cyber threat in SA where scammers send emails or or SMS pretending to be genuine. To avoid this do no click on suspicious links" + userName + ".";
             }
             else if (input.Contains("malware"))
             {
@@ -103,11 +103,11 @@ public class ChatBot
             {
                 return "Only visit trusted websites and avoid clicking suspicious links. Avoid connecting your phone on public Wi-fi.";
             }
-            else if (input.Contains("sharing Pin") || input.Contains("OTP scams"))
+            else if (input.Contains("sharing pin") || input.Contains("otp scams"))
             {
                 return userName +" never share your OTP or pin because this a very common scam in SA right now.If someone claims to be from your bank, hang up or call the bank using their offficial number.";
             } 
-            else if (input.Contains("Updates") || input.Contains("Antivirus"))
+            else if (input.Contains("updates") || input.Contains("antivirus"))
             {
                 return "Always keep your phone, computer and apps updated. Enable automatic updates and use built-in protection like Windows Defender.";
             }
@@ -118,7 +118,7 @@ public class ChatBot
             }
             else
             {
-                return "I'm not sure l understood that.Could you rephrase? Try asking about phishing, passwords or safe browsing.Type 'exit' to stop.";
+                return "I'm not sure l understood that.Could you rephrase? Try asking about phishing, passwords or safe browsing.Type 'exit' or 'quit' to stop.";
             }
         }
     }
