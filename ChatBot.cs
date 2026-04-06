@@ -13,6 +13,8 @@ public class ChatBot
         public void Start()
         {
             PlayVoiceGreeting();
+            Displayhelper.ShowLogo(); //Shows your ASCII art
+            Displayhelper.ShowWelcomeMessage(userName); //Shows a nice welcome box
             Console.WriteLine("Please enter your name: ");
             userName = Console.ReadLine()!;
 
@@ -22,9 +24,11 @@ public class ChatBot
                 userName = "Friend";
             }
 
-            Console.WriteLine("Hello " + userName + "! Nice to meet you.");
-            Console.WriteLine("I am " + botName + ", your Cybersecurity Assistant who is here to give you practical tips so that you can protect your self online.");
+            Displayhelper.PrintColored("Hello " + userName + "! Nice to meet you.", ConsoleColor.Yellow);
+            Displayhelper.PrintColored("I am " + botName + ", your Cybersecurity Assistant who is here to give you practical tips so that you can protect your self online.", ConsoleColor.Yellow);
             Console.WriteLine("Just type yo question naturally.\n");
+
+            Displayhelper.ShowDivider();
             RunChat();
         }
 
@@ -34,6 +38,7 @@ public class ChatBot
             //using try and catch method so that the system does not crash when voice does not play
             try
             {
+
                 SoundPlayer player = new SoundPlayer("greeting.wav");
                 player.PlaySync(); //plays fully before continuing
             }
@@ -49,18 +54,21 @@ public class ChatBot
             while (true)
             {
                 //this shows the conversation between the bot and user
-                Console.Write(userName + ": "); //keeps the USER: and the question the user types on the same line
-                string input = Console.ReadLine()!;
+                Displayhelper.ShowUserPrompt(userName);
 
+                string input = Console.ReadLine()!.Trim();
                 //allows the user to end the chat
                 if (input.ToLower() == "exit" || input.ToLower()== "quit")
                 {
-                    Console.WriteLine("Goodbye and thank you for chatting, " + userName + ". Stay safe online!" );
+                    Displayhelper.PrintColored("Goodbye and thank you for chatting, " + userName + ". Stay safe online!", ConsoleColor.DarkYellow);
                     break;
                 }
-                //the bot response name is CyberBot so where it respond to the user its shown
+                // Get bot response
                 string response = GetResponse(input);
-                Console.WriteLine("CyberBot: " + response +"\n");
+                
+                //Shows bot response with typing effect
+                Displayhelper.ShowBotResponse(response);
+                Displayhelper.ShowDivider();
             }
         }
         //this method will handle all user input and responses
@@ -97,7 +105,7 @@ public class ChatBot
             }
             else if (input.Contains("phishing"))
             {
-                return "Phishing is currently the biggest Cyber threat in SA where scammers send emails or or SMS pretending to be genuine. To avoid this do no click on suspicious links" + userName + ".";
+                return "Phishing is currently the biggest Cyber threat in SA where scammers send emails or or SMS pretending to be genuine. To avoid this do no click on suspicious links " + userName + ".";
             }
             else if (input.Contains("malware"))
             {

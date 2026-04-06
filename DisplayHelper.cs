@@ -8,6 +8,7 @@ namespace CyberSecurityChatBot
         //shows the ASCII art logo
         public static void ShowLogo()
         {
+           Console.Clear();
            Console.ForegroundColor = ConsoleColor.Cyan;
            Console.WriteLine(@"
            _________        ___.                 _________                          .__  __          __________        __   
@@ -18,6 +19,7 @@ namespace CyberSecurityChatBot
         \/\/          \/     \/             \/     \/     \/                       \/             \/             "
 
            ); 
+           Console.WriteLine();
            Console.ResetColor();
 
         }
@@ -27,10 +29,9 @@ namespace CyberSecurityChatBot
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("*******************************************************************");
-            Console.WriteLine("Welcome" + userName.PadRight(55));
-            Console.WriteLine("You are now chatting with CyberBot - CYBERSECURITY CHATBOT");
+            Console.WriteLine("                 Welcome to CYBERSECURITY CHATBOT                  ");
             Console.WriteLine("*******************************************************************");
-
+ 
             Console.ResetColor();
             Console.ResetColor();
         }
@@ -47,19 +48,34 @@ namespace CyberSecurityChatBot
         public static void ShowDivider()
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("--------------------------------------------------------------------");
+            Console.WriteLine("-------------------------------------------------------------------------------");
+            Console.ResetColor();
+        }
+
+        //shows user prompt in Cyan colour
+        public static void ShowUserPrompt(string userName)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.Write(userName + ": "); //keeps the USER: and the question the user types on the same line
             Console.ResetColor();
         }
 
         //typing effect  which makes it fell like a real chat
-        public static void TypeText(string text, int delays = 30)
+        public static void ShowBotResponse(string response)
         {
-            foreach (char c in text)
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Write("CyberBot: ");
+            Console.ResetColor();
+
+            //Typing effect for bot responses
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (char c in response)
             {
                 Console.Write(c);
-                Thread.Sleep(delays);
+                Thread.Sleep(30);
             }
-            Console.WriteLine();
+            Console.ResetColor();
+            Console.WriteLine("\n");
         }
 
     }
