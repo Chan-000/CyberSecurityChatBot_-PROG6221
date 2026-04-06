@@ -1,117 +1,125 @@
 using System;
 using System.Media;
 
+
 namespace CyberSecurityChatBot
 {
-    public class ChatBot
+public class ChatBot
     {
-        // Automatic properties (required by the POE)
-        public string BotName { get; set; } = "CyberGuard SA";
-        public string UserName { get; set; } = "Friend";
 
-        private readonly string greetingAudioPath = "greeting.wav";
+        public string botName = "CyberBot";
+        public string userName;
 
         public void Start()
         {
             PlayVoiceGreeting();
+            Console.WriteLine("Please enter your name: ");
+            userName = Console.ReadLine()!;
 
-            // Ask for name
-            Console.WriteLine("Hello! Welcome to CyberGuard SA.");
-            Console.Write("Please enter your name: ");
-            UserName = Console.ReadLine()?.Trim() ?? "Friend";
+            //automatically uses friend if the user does not type their name
+            if (string.IsNullOrEmpty(userName))
+            {
+                userName = "Friend";
+            }
 
-            if (string.IsNullOrEmpty(UserName))
-                UserName = "Friend";
+            Console.WriteLine("Hello" + userName + "! Nice to meet you.");
+            Console.WriteLine("I am " + botName + ", your Cybersecurity Assistant who is here to give you practical tips so that you can protect your self online.\n");
 
-            ShowPersonalisedWelcome();
-            ShowInstructions();
-            RunConversationLoop();
+            RunChat();
         }
 
-        private void PlayVoiceGreeting()
+        // plays the voice message
+        public void PlayVoiceGreeting()
         {
+            //using try and catch method so that the system does not crash when voice does not play
             try
             {
-                if (System.IO.File.Exists(greetingAudioPath))
-                {
-                    SoundPlayer player = new SoundPlayer(greetingAudioPath);
-                    player.PlaySync();
-                }
+                SoundPlayer player = new SoundPlayer("greeting.wav");
+                player.PlaySync(); //plays fully before continuing
             }
             catch
             {
-                // Ignore if audio file is missing for now
+                Console.WriteLine("Audio file not found!");
             }
         }
 
-        private void ShowPersonalisedWelcome()
-        {
-            Console.WriteLine($"\nHello {UserName}! Nice to meet you.");
-            Console.WriteLine($"I am {BotName}, your Cybersecurity Awareness Assistant.");
-            Console.WriteLine("I'm here to help you stay safe online.\n");
-        }
-
-        private void ShowInstructions()
-        {
-            Console.WriteLine("You can ask me anything about cybersecurity!");
-            Console.WriteLine("Examples: how are you, what is your purpose, phishing, password, malware, safe browsing");
-            Console.WriteLine("Type 'exit' to stop.\n");
-        }
-
-        private void RunConversationLoop()
+        // main chat loop
+        public void RunChat()
         {
             while (true)
             {
-                Console.Write($"{UserName}: ");
-                string input = Console.ReadLine()?.Trim() ?? "";
+                //this shows the conversation between the bot and user
+                Console.WriteLine(userName + ": ");
+                string input = Console.ReadLine()!;
 
-                if (string.IsNullOrWhiteSpace(input))
+                //allows the user to end the chat
+                if (input.ToLower() == "exit")
                 {
-                    Console.WriteLine("Bot: Please type something so I can help you.");
-                    continue;
-                }
-
-                if (input.ToLower() == "exit" || input.ToLower() == "quit" || input.ToLower() == "bye")
-                {
-                    Console.WriteLine($"Bot: Goodbye {UserName}! Stay safe online. 👋");
+                    Console.WriteLine("Goodbye " + userName + "! Stay safe online." );
                     break;
                 }
-
+                //the bot response name is CyberBot so where it respond to the user its shown
                 string response = GetResponse(input);
-                Console.WriteLine($"Bot: {response}\n");
+                Console.WriteLine("CyberBot: " + response +"\n");
             }
         }
-
+        //this method will handle all user input and responses
         public string GetResponse(string input)
         {
+            //converts text to lowercase, removes extra space
             input = input.ToLower().Trim();
 
-            if (input.Contains("hello") || input.Contains("hi"))
-                return "Hello! How can I help you with cybersecurity today?";
-
-            if (input.Contains("how are you"))
-                return "I'm doing great and ready to help South Africans stay safe online!";
-
-            if (input.Contains("purpose") || input.Contains("who are you"))
-                return "My purpose is to teach you about cybersecurity and online safety in South Africa.";
-
-            if (input.Contains("what can i ask"))
-                return "You can ask about password, phishing, malware, safe browsing, and more!";
-
-            if (input.Contains("password"))
-                return "Use a strong password with at least 12 characters including uppercase, lowercase, numbers and symbols. Never reuse the same password.";
-
-            if (input.Contains("phishing"))
-                return "Phishing is when criminals send fake emails or messages to trick you. Never click suspicious links. Always go directly to the official website.";
-
-            if (input.Contains("malware"))
-                return "Malware is harmful software that can steal your data or damage your device. Keep your antivirus updated and avoid downloading unknown files.";
-
-            if (input.Contains("safe browsing") || input.Contains("browse"))
-                return "Only visit trusted websites. Look for https:// and the padlock icon. Keep your browser updated.";
-
-            // Default response for anything we don't understand
-            return "I'm not sure I understood that. Could you rephrase? Try asking about phishing, password, malware or safe browsing.";
+            //chat responses
+            if (input == "hello" || input.Contains("hi"))
+            {
+                return "Hello " + userName +  "! How can l help you with today?";
+            }
+            else if (input == "how are you")
+            {
+                return "I'm just code, but l'm doing great and ready to help you!";
+            }
+            else if (input == "what is your purpose" || input.Contains("purpose"))
+            {
+                return "My purpose is to teach you about cybersecurity and online safety " + userName +".";
+            }
+            else if (input == "what can l ask you about" || input.Contains("ask"))
+            {
+                return "You can ask me anything related to staying safe online, " + userName +"Popular topics inlude:-creating strong password, -safe browsing habits etc";
+            }
+            //cybersecurity topics
+            else if (input.Contains("password"))
+            {
+                return "Use string password with symbols and numbers.A password should have at least 16 characters long, for example (OkayNow2026!Coffe)";
+            }
+            else if (input.Contains("phishing") )
+            {
+                return "Phishing is currently the biggest Cyber threat in SA where scammers send emails or or SMS pretending to be genuine. To avoid this do no click on suspcious links" + userName + ".";
+            }
+            else if (input.Contains("malware"))
+            {
+                return "Malware is harmful software that can damage your device or steal data.";
+            }
+            else if (input.Contains("safe browsing") || input.Contains("suspicious links"))
+            {
+                return "Only visit trusted websites and avoid clicking suspicious links. Avoid connecting your phone on public Wi-fi.";
+            }
+            else if (input.Contains("sharing Pin") || input.Contains("OTP scams"))
+            {
+                return userName +" never share your OTP or pin because this a very common scam in SA right now.If someone claims to be from your bank, hang up or call the bank using their offficial number.";
+            } 
+            else if (input.Contains("Updates") || input.Contains("Antivirus"))
+            {
+                return "Always keep your phone, computer and apps updated. Enable automatic updates and use built-in protection like Windows Defender.";
+            }
+            //input invalidation
+            else if (string.IsNullOrWhiteSpace(input))
+            {
+                return "Please enter a message so that l am able to assist.";
+            }
+            else
+            {
+                return "I'm not sure l understood that.Could you rephrase? Try asking about phishing, passwords or safe browsing.Type 'exit' to stop.";
+            }
         }
     }
 }
