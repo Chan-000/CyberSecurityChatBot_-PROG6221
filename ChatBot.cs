@@ -12,7 +12,7 @@ public class ChatBot
 
         public void Start()
         {
-            PlayVoiceGreeting();
+            AudioPlayer.PlayVoiceGreeting();
             Displayhelper.ShowLogo(); //Shows your ASCII art
             Displayhelper.ShowWelcomeMessage(userName); //Shows a nice welcome box
             Console.WriteLine("Please enter your name: ");
@@ -32,21 +32,7 @@ public class ChatBot
             RunChat();
         }
 
-        // plays the voice message
-        public void PlayVoiceGreeting()
-        {
-            //using try and catch method so that the system does not crash when voice does not play
-            try
-            {
-
-                SoundPlayer player = new SoundPlayer("greeting.wav");
-                player.PlaySync(); //plays fully before continuing
-            }
-            catch
-            {
-                Console.WriteLine("Audio file not found!");
-            }
-        }
+        
 
         // main chat loop
         public void RunChat()
