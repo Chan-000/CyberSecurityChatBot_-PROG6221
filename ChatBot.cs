@@ -82,9 +82,13 @@ public class ChatBot
             {
                 return "My purpose is to teach you about cybersecurity and online safety " + userName +".";
             }
-            else if (input == "what can l ask you about" || input.Contains("ask"))
+            else if (input == "what can l ask you about" || input.Contains("ask") ||input.Contains("topics"))
             {
-                return "You can ask me anything related to staying safe online, " + userName +"Popular topics inlude:-creating strong password, -safe browsing habits etc";
+                return "You can ask me anything related to staying safe online, " + userName + ".\n\n" +
+                       "Popular topics inlude:\n" +
+                       "-creating strong password\n" + 
+                       "-safe browsing, phishing,links etc\n" + 
+                       "Go ahead and ask" + userName;
             }
             //cybersecurity topics
             else if (input.Contains("password"))
