@@ -3,22 +3,22 @@ using System.Runtime.InteropServices.Marshalling;
 
 namespace CyberSecurityChatBot
 {
-    public static class Displayhelper
+    public static class DisplayHelper
     {
         //shows the ASCII art logo
         public static void ShowLogo()
         {
-           Console.Clear();
+        
            Console.ForegroundColor = ConsoleColor.Cyan;
            Console.WriteLine(@"
-           _________        ___.                 _________                          .__  __          __________        __   
-\_   ___ \___.__.\_ |__   ___________/   _____/ ____   ____  __ _________|__|/  |_ ___.__.\______   \ _____/  |_ 
-/    \  \<   |  | | __ \_/ __ \_  __ \_____  \_/ __ \_/ ___\|  |  \_  __ \  \   __<   |  | |    |  _//  _ \   __\
-\     \___\___  | | \_\ \  ___/|  | \/        \  ___/\  \___|  |  /|  | \/  ||  |  \___  | |    |   (  <_> )  |  
- \______  / ____| |___  /\___  >__| /_______  /\___  >\___  >____/ |__|  |__||__|  / ____| |______  /\____/|__|  
-        \/\/          \/     \/             \/     \/     \/                       \/             \/             "
-
-           ); 
+            _________         ___.                  __________          __    
+\_   ___ \ ___.__.\_ |__    ____ _______\______   \  ____ _/  |_  
+/    \  \/<   |  | | __ \ _/ __ \\_  __ \|    |  _/ /  _ \\   __\ 
+\     \____\___  | | \_\ \\  ___/ |  | \/|    |   \(  <_> )|  |   
+ \______  // ____| |___  / \___  >|__|   |______  / \____/ |__|   
+        \/ \/          \/      \/               \/                
+                                                                                                                                                                                                                                                                             
+           "); 
            Console.WriteLine();
            Console.ResetColor();
 
@@ -29,26 +29,11 @@ namespace CyberSecurityChatBot
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("*******************************************************************");
-            Console.WriteLine("                 Welcome to CYBERSECURITY CHATBOT                  ");
+            Console.WriteLine("           Welcome " + userName + "! to CYBERSECURITY CHATBOT ");
+            Console.WriteLine("        Cybersecurity Awareness Assistant for                 ");
             Console.WriteLine("*******************************************************************");
  
             Console.ResetColor();
-            Console.ResetColor();
-        }
-
-        //Helper to print in any colour
-        public static void PrintColored(string text, ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-            Console.WriteLine(text);
-            Console.ResetColor();
-        }
-
-        //draws a nice divider line
-        public static void ShowDivider()
-        {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine("-------------------------------------------------------------------------------");
             Console.ResetColor();
         }
 
@@ -72,10 +57,40 @@ namespace CyberSecurityChatBot
             foreach (char c in response)
             {
                 Console.Write(c);
-                Thread.Sleep(30);
+                Thread.Sleep(20);
             }
             Console.ResetColor();
             Console.WriteLine("\n");
+     
+        }
+
+        //Helper to print in any colour
+        public static void PrintColored(string text, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+
+        //
+        public static void TypeText(string text, ConsoleColor color, int delay = 30)
+        {
+            Console.ForegroundColor = color;
+            foreach (char c in text)
+            {
+                Console.Write(c);
+                Thread.Sleep(delay);
+            }
+            Console.ResetColor();
+            Console.WriteLine();
+        }
+
+        //draws a nice divider line
+        public static void ShowDivider()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("_________________________________________________________________________");
+            Console.ResetColor();
         }
 
     }
