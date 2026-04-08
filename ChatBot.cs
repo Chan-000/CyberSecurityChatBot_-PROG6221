@@ -87,7 +87,8 @@ namespace CyberSecurityChatBot
                 //Display user input prompt
                 DisplayHelper.ShowUserPrompt(userName);
                 //Read and normalise input
-                string input = Console.ReadLine()!.Trim().ToLower();
+                string input = Console.ReadLine() ?? "";
+                input = input.Trim().ToLower();
 
                 //Validate empty input to prevent errors
                 if (string.IsNullOrWhiteSpace(input))
