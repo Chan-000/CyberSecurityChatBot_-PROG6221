@@ -1,101 +1,144 @@
 using System;
 using System.Media;
+using System.Threading.Tasks.Dataflow;
 
 
 namespace CyberSecurityChatBot
 {
-public class ChatBot
+
+    /*
+    *The ChatBot class controls the main logic of the application
+    *It manages user interaction, input handling, menu navigation and generates cybersecurity responses
+    */
+    public class ChatBot
     {
-        // automatic properties
+        // Stores the chatbot's name used in responses
         public string botName {get; set;}= "CyberBot";
+        //Stores the user's name for personalised interaction
         public string userName{get; set;} = "";
 
+        //Start the chatbot by displaying UI elements, playing audio and collecting the user's name
         public void Start()
         {
+            //Play voice greeting at application launch
             AudioPlayer.PlayVoiceGreeting();
-            DisplayHelper.ShowLogo(); //Shows your ASCII art
+            // Display ASCII logo header
+            DisplayHelper.ShowLogo(); 
 
+            //ask user to enter their name
             Console.Write("Please enter your name: ");
             userName = Console.ReadLine()!;
             
-            //automatically uses friend if the user does not type their name
+            //automatically uses friend if the user enters nothing
             if (string.IsNullOrEmpty(userName))
             {
                 userName = "Friend";
             }
-            DisplayHelper.ShowWelcomeMessage(userName); //Shows a nice welcome box
+            
+            //Display structured welcome message
+            DisplayHelper.ShowWelcomeMessage(userName); 
 
+            //Personalised introduction with typing effect
             DisplayHelper.TypeText("Hello " + userName + "! Nice to meet you.", ConsoleColor.Yellow);
             DisplayHelper.TypeText("I'm " + botName + ", your Cybersecurity Assistant, here to assist you in staying safe online.", ConsoleColor.Yellow);
             
-            ShowMenu();
+            //Divider for visual separation
             DisplayHelper.ShowDivider();
+            //Start chatbot conversation loop
             RunChat();
         }
 
-        //menue option
+        /*
+        *Displays a menue of cybersecurity topics
+        *Users can either select a number or type their own question
+        */
         public void ShowMenu()
         {
+           //Styled menu header using colours and spacing 
+           DisplayHelper.PrintColored("\n  ===== Menu =====  ", ConsoleColor.Cyan);
            DisplayHelper.PrintColored("\nChoose a topic or type your own question:",ConsoleColor.DarkCyan); 
 
-           Console.WriteLine("1. Password safety");
-           Console.WriteLine("2. Phishing scams");
-           Console.WriteLine("3. Malware");
-           Console.WriteLine("4. Safe browsing");
-           Console.WriteLine("5. OTP & PIN scams");
-           Console.WriteLine("6. Updates & Antivirus");
+           //Menue option with symbols(from ChatGPT) to improve UI appearance
+           Console.WriteLine("1.🔐 Password safety");
+           Console.WriteLine("2.⚠ Phishing scams");
+           Console.WriteLine("3.💻 Malware");
+           Console.WriteLine("4.🌐 Safe browsing");
+           Console.WriteLine("5.🔑 OTP & PIN scams");
+           Console.WriteLine("6.🛡 Updates & Antivirus");
            Console.WriteLine("7. What can l ask\n");
-           Console.WriteLine("You can type 'menu' to see this menu list again");
+
+           //Instructions for user navigation
+           Console.WriteLine("You can type 'options' to see this menu again");
            DisplayHelper.PrintColored("Type 'exit or 'quit' to quit the conversation.", ConsoleColor.DarkRed);
         }
 
-        // main chat loop
+        /*
+        *Runs the main chatbot loop where user interacts with the system
+        *Handles input validation, mene selection and response generation
+        */
         public void RunChat()
         {
+            //Show menu once at the beginning
+            ShowMenu();
+            DisplayHelper.ShowDivider();
+
             while (true)
             {
-                
-                //this shows the conversation between the bot and user
+                //Display user input prompt
                 DisplayHelper.ShowUserPrompt(userName);
+                //Read and normalise input
                 string input = Console.ReadLine()!.Trim().ToLower();
 
-                //allows the user to end the chat
+                //Validate empty input to prevent errors
+                if (string.IsNullOrWhiteSpace(input))
+                {
+                    Console.WriteLine("Please enter a message so that l am able to assist.");
+                    continue;//ask again
+                }
+
+                //Exit condition for ending the chat
                 if (input == "exit" || input == "quit")
                 {
                     DisplayHelper.PrintColored("Goodbye and thank you for chatting, " + userName + ". Stay safe online!", ConsoleColor.DarkYellow);
                     break;
                 }
-                //Menu shortcuts
+
+                //Converts menu number input into keyword based input
                 if(input == "1") input = "password";
                 else if(input == "2") input = "phishing";
                 else if(input == "3") input = "malware";
                 else if(input == "4") input = "safe browsing";
                 else if(input == "5") input = "otp scams";
                 else if(input == "6") input = "updates";
-                else if(input == "7") input = "what can l ask";
+                else if(input == "7") input = "what can l ask you about";
                 
-                if (input.ToLower() == "menu")
+                //Allow user to reopen the menu at any time
+                if (input == "options")
                 {
                     ShowMenu();
                     continue;
                 }
                 
-                // Get bot response
+                //Generate chatbot response based on input
                 string response = GetResponse(input);
                 
-                //Shows bot response with typing effect
+                //Display response with typing effect
                 DisplayHelper.ShowBotResponse(response);
                 DisplayHelper.ShowDivider();
 
             }
         }
-        //this method will handle all user input and responses
+        
+        /*
+        *Generate chatbot responses based on user input
+        *Use keyword matching to identify cybersecurity topics
+        */
         public string GetResponse(string input)
         {
-            //converts text to lowercase, removes extra space
+            //Ensure consistent processing of user input
             input = input.ToLower().Trim();
 
-            //chat responses
+            //General conversational responses
             if (input == "hello" || input == "hi")
             {
                 return "Hello " + userName +  "! What would you like to learn about today?";
@@ -108,7 +151,7 @@ public class ChatBot
             {
                 return "My purpose " + userName + " is to raise cybersecurity awareness and teach practical tips on online safety.";
             }
-            else if (input == "what can l ask" || input.Contains("ask") ||input.Contains("topics"))
+            else if (input == "what can l ask you about" || input.Contains("ask") ||input.Contains("topics"))
             {
                 return "You can ask me anything related to staying safe online, " + userName + ".\n\n" +
                        "Popular topics include:\n" +
@@ -117,7 +160,8 @@ public class ChatBot
                        "-safe browsing, phishing,links etc\n" + 
                        "Go ahead and type your question naturally!";
             }
-            //cybersecurity topics
+
+            //cybersecurity-specific responses
             else if (input.Contains("password"))
             {
                 return "Create strong passwords with at least 16 characters including uppercase, lowercase, numbers and symbols.\n Example:MyS@feP@ss2026!";
@@ -142,12 +186,7 @@ public class ChatBot
             {
                 return "Always keep your devices and apps updated. Enable automatic updates and use good antivirus protection.";
             }
-            //input invalidation
-            else if (string.IsNullOrWhiteSpace(input))
-            {
-                return "Please enter a message so that l am able to assist.";
-            }
-            else
+            else //Default response for unknown input
             {
                 return "I'm sorry, " + userName + " l didn't understand that.Could you rephrase your question? Try asking about phishing, passwords or safe browsing.";
             }
