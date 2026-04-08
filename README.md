@@ -23,3 +23,7 @@ The CyberSecurity ChatBot is a C# console application designed to educate users 
     
 ## ASCII art image
 ![alt text](ascii-art-text.png)
+
+## CI screenshoot
+<img width="958" height="123" alt="image" src="https://github.com/user-attachments/assets/7578058a-ced9-45e9-8209-07be11ca1499" />
+
