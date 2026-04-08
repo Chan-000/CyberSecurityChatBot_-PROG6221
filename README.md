@@ -12,6 +12,18 @@ The CyberSecurity ChatBot is a C# console application designed to educate users 
 - Menu system + text input
 - Cybersecurity awareness topics
 
+## Project Structure
+CyberSecurityChatBot/
+├── Program.cs                   
+├── ChatBot.cs                   
+├── DisplayHelper.cs              
+├── AudioPlayer.cs              
+├── greeting.wav                  
+├── .github/
+│   └── workflows/
+│       └── dotnet.yml            
+└── README.md
+
 ## Technologies used
 - C# (.NET Console Application)
 - System.Media
@@ -26,4 +38,3 @@ The CyberSecurity ChatBot is a C# console application designed to educate users 
 
 ## CI screenshoot
 <img width="958" height="123" alt="image" src="https://github.com/user-attachments/assets/7578058a-ced9-45e9-8209-07be11ca1499" />
-
