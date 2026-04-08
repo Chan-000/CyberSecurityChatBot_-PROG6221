@@ -19,9 +19,7 @@ CyberSecurityChatBot/
 ├── DisplayHelper.cs              
 ├── AudioPlayer.cs              
 ├── greeting.wav                  
-├── .github/
-│   └── workflows/
-│       └── dotnet.yml            
+├── .github/workflows/main.yml            
 └── README.md
 
 ## Technologies used
