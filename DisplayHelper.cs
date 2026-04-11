@@ -10,7 +10,7 @@ namespace CyberSecurityChatBot
     public static class DisplayHelper
     {
         //displays the ASCII art logo at the start of the application
-        //acts a s visual header to introduce the chatbot
+        //acts as visual header to introduce the chatbot
         public static void ShowLogo()
         {
            //Set text colour of the logo
@@ -32,7 +32,7 @@ namespace CyberSecurityChatBot
         // uses borders and spacing to create a structured UI section
         public static void ShowWelcomeMessage(string userName)
         {
-            //sets the backgroound colour of the welcome banner
+            //sets the background colour of the welcome banner
             Console.ForegroundColor = ConsoleColor.Green;
             //border + personalised welcome message
             Console.WriteLine("*******************************************************************");
@@ -45,7 +45,7 @@ namespace CyberSecurityChatBot
         }
 
         /*
-        *Displays the user input prompt in a distinct colour
+        *Displays the user input prompt in a different colour
         *Keeps chatbot responses visually separate from input
         */
         public static void ShowUserPrompt(string userName)
@@ -58,7 +58,7 @@ namespace CyberSecurityChatBot
 
         /*
         *Display the chatbot response with a typing animation effect
-        *this simulates a real conversation & "response" is the chatbot reply text
+        *this simulates a real conversation 
         */
         public static void ShowBotResponse(string response)
         {

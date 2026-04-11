@@ -49,7 +49,7 @@ namespace CyberSecurityChatBot
         }
 
         /*
-        *Displays a menue of cybersecurity topics
+        *Displays a menu of cybersecurity topics
         *Users can either select a number or type their own question
         */
         public void ShowMenu()
