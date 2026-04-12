@@ -31,3 +31,9 @@ CyberSecurityChatBot/
 1. Open the terminal in the project folder
 2. Run the following command: "dotnet run."
     
+## ASCII art image
+![alt text](ascii-art-text.png)
+
+## Github Actions (CI)
+This program use Github Actions for continuous Integration and below is proof of a successful build.
+![alt text](CI-proof.png)
